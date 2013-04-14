@@ -13,7 +13,7 @@ namespace Worker.Demo.Tests
     public class MessageProcessorTests
     {
         [TestMethod]
-        public void TestMessageDecoder()
+        public void TestWhenDecodingMessageThenShouldReturnATestMessage()
         {
             var decoder = new TestMessageDecoder();
             var message = decoder.Decode("message content:0");
@@ -21,7 +21,7 @@ namespace Worker.Demo.Tests
         }
 
         [TestMethod]
-        public void TestMessageSource()
+        public void TestWhenGetOneMessageFromSourceThenSourceReturnsMessage()
         {
             var source = new TestMessageSource();
             source.Load(1);
