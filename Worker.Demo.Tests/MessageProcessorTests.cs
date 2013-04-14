@@ -100,15 +100,15 @@ namespace Worker.Demo.Tests
             var decoder = new TestMessageDecoder();
             var logger = new TestLogger();
 
-            var processor = new MessageProcessor(source, decoder, new List<IMessageHandler>() , logger);
+            var messageProcessor = new MessageProcessor(source, decoder, new List<IMessageHandler>() , logger);
 
-            processor.Process();
+            messageProcessor.Process();
          
             Assert.IsTrue(source.GetMessages(1).Any());
         }
 
         [TestMethod]
-        public void TestUsingUnityWhenTestSourceHasMessagesThenMessageIsRemovedFromSource()
+        public void TestUsingUnityWhenTestSourceHasMessageAndMessageProcessorIsExecutedThenMessagesAreRemovedFromSource()
         {
             var uc = new UnityContainer();
 
@@ -123,9 +123,9 @@ namespace Worker.Demo.Tests
 
             uc.RegisterInstance(typeof (IMessageSource), ms);
 
-            var processor = uc.Resolve<MessageProcessor>();
+            var messageProcessor = uc.Resolve<MessageProcessor>();
 
-            processor.Process();
+            messageProcessor.Process();
 
             Assert.IsFalse(ms.GetMessages(1).Any());
         }
