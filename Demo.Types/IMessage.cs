@@ -1,6 +1,6 @@
 ﻿namespace Demo.Types
 {
-    public class Class1
+    public interface IMessage
     {
     }
 }

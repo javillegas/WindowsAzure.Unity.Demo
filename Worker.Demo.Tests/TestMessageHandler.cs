@@ -1,4 +1,5 @@
 ﻿using System;
+using Demo.Types;
 
 namespace Worker.Demo.Tests
 {

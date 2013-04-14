@@ -128,6 +128,10 @@
     <Content Include="SQL Dependencies\GetDatabaseSizeRecommendation.sql" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Demo.Types\Demo.Types.csproj">
+      <Project>{0054ce4f-e806-499c-a52b-824536058e41}</Project>
+      <Name>Demo.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Worker.Demo\Worker.Demo.csproj">
       <Project>{FFC2228B-4679-4198-932B-54FCC1AD3644}</Project>
       <Name>Worker.Demo</Name>

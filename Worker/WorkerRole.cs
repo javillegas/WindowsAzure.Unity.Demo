@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using Microsoft.Practices.Unity;
 using Microsoft.WindowsAzure.ServiceRuntime;
+using Worker.Demo;
 
 namespace Worker
 {
@@ -12,8 +15,18 @@ namespace Worker
             // This is a sample worker implementation. Replace with your logic.
             Trace.WriteLine("Worker entry point called", "Information");
 
+            var uc = new UnityContainer();
+
+            uc.RegisterType<ILogger, TableStorageLogger>();
+            uc.RegisterType<IMessageSource, QueueMessageSource>();
+            uc.RegisterType<IMessageDecoder, QueueMessageDecoder>();
+            uc.RegisterType<IMessageHandler, CommandHandler>("CommandHandler");
+            uc.RegisterType<IEnumerable<IMessageHandler>, IMessageHandler[]>();
+
+            var processor = uc.Resolve<MessageProcessor>();
             while (true)
             {
+                processor.Process();
                 Thread.Sleep(10000);
                 Trace.WriteLine("Working", "Information");
             }

@@ -19,7 +19,6 @@ namespace Worker.Demo
         private const string ConnectionString = "StorageConnectionString";
         private const string QueueName = "test";
 
-
         public QueueMessageSource()
         {
             var account = MakeAccount();

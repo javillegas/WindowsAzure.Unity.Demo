@@ -1,4 +1,6 @@
-﻿namespace Worker.Demo.Tests
+﻿using Demo.Types;
+
+namespace Worker.Demo.Tests
 {
     public class TestMessage : IMessage
     {

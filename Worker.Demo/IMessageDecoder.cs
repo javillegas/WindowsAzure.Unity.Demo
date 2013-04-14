@@ -1,4 +1,6 @@
-﻿namespace Worker.Demo
+﻿using Demo.Types;
+
+namespace Worker.Demo
 {
     public interface IMessageDecoder
     {
