@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "WindowsAzure.Unity.Demo", "WindowsAzure.Unity.Demo\WindowsAzure.Unity.Demo.ccproj", "{FB16EA63-2E9C-4229-A544-574BC739A1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "Worker\Worker.csproj", "{E086B295-6FC1-4D77-A469-617E15B9522B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFront", "WebFront\WebFront.csproj", "{40C8C8A9-DFF8-468B-B6CC-BDBFF6B8A9DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFront.Tests", "WebFront.Tests\WebFront.Tests.csproj", "{1AC6AFCB-9D6C-4A4A-91C7-92293EE855BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker.Demo", "Worker.Demo\Worker.Demo.csproj", "{FFC2228B-4679-4198-932B-54FCC1AD3644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker.Demo.Tests", "Worker.Demo.Tests\Worker.Demo.Tests.csproj", "{5A95CE38-8A3C-4FD9-9327-E7A1C1010ADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Types", "Demo.Types\Demo.Types.csproj", "{0054CE4F-E806-499C-A52B-824536058E41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB16EA63-2E9C-4229-A544-574BC739A1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB16EA63-2E9C-4229-A544-574BC739A1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB16EA63-2E9C-4229-A544-574BC739A1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB16EA63-2E9C-4229-A544-574BC739A1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E086B295-6FC1-4D77-A469-617E15B9522B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E086B295-6FC1-4D77-A469-617E15B9522B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E086B295-6FC1-4D77-A469-617E15B9522B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E086B295-6FC1-4D77-A469-617E15B9522B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40C8C8A9-DFF8-468B-B6CC-BDBFF6B8A9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C8C8A9-DFF8-468B-B6CC-BDBFF6B8A9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C8C8A9-DFF8-468B-B6CC-BDBFF6B8A9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C8C8A9-DFF8-468B-B6CC-BDBFF6B8A9DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC6AFCB-9D6C-4A4A-91C7-92293EE855BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC6AFCB-9D6C-4A4A-91C7-92293EE855BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC6AFCB-9D6C-4A4A-91C7-92293EE855BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC6AFCB-9D6C-4A4A-91C7-92293EE855BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC2228B-4679-4198-932B-54FCC1AD3644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC2228B-4679-4198-932B-54FCC1AD3644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC2228B-4679-4198-932B-54FCC1AD3644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC2228B-4679-4198-932B-54FCC1AD3644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A95CE38-8A3C-4FD9-9327-E7A1C1010ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A95CE38-8A3C-4FD9-9327-E7A1C1010ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A95CE38-8A3C-4FD9-9327-E7A1C1010ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A95CE38-8A3C-4FD9-9327-E7A1C1010ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0054CE4F-E806-499C-A52B-824536058E41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0054CE4F-E806-499C-A52B-824536058E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0054CE4F-E806-499C-A52B-824536058E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0054CE4F-E806-499C-A52B-824536058E41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1212.0\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1212.0\DesignTime
+	EndGlobalSection
+EndGlobal
