@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Demo.Types;
-using Microsoft.Practices.Unity;
 using Worker.Demo.Decoders;
 using Worker.Demo.Handlers;
 using Worker.Demo.Logging;
@@ -12,17 +11,24 @@ namespace Worker.Demo
 {
     public class MessageProcessor
     {
-        [Dependency]
-        public IMessageSource MessageSource { get; set; }
+        public MessageProcessor(IMessageSource source,
+                                IMessageDecoder decoders, 
+                                IEnumerable<IMessageHandler> handlers,
+                                ILogger logger)
+        {
+            MessageSource = source;
+            MessageDecoder = decoders;
+            MessageHandlers = handlers;
+            Logger = logger;
+        }
 
-        [Dependency]
-        public IMessageDecoder MessageDecoder { get; set; }
+        public IMessageSource MessageSource { get; private set; }
 
-        [Dependency]
-        public IEnumerable<IMessageHandler> MessageHandlers { get; set; }
+        public IMessageDecoder MessageDecoder { get; private set; }
 
-        [Dependency]
-        public ILogger Logger { get; set; }
+        public IEnumerable<IMessageHandler> MessageHandlers { get; private set; }
+        
+        public ILogger Logger { get; private set; }
 
         public void Process()
         {

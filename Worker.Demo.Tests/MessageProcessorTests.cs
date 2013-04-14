@@ -85,13 +85,7 @@ namespace Worker.Demo.Tests
             var handler = new TestMessageHandler();
             var logger = new TestLogger();
 
-            var processor = new MessageProcessor
-                {
-                    MessageDecoder = decoder,
-                    MessageHandlers = new List<IMessageHandler> {handler},
-                    MessageSource = source,
-                    Logger = logger
-                };
+            var processor = new MessageProcessor(source,decoder, new List<IMessageHandler> {handler},logger);
 
             processor.Process();
 
@@ -106,13 +100,7 @@ namespace Worker.Demo.Tests
             var decoder = new TestMessageDecoder();
             var logger = new TestLogger();
 
-            var processor = new MessageProcessor
-                {
-                    MessageDecoder = decoder,
-                    MessageHandlers = new List<IMessageHandler>(),
-                    MessageSource = source,
-                    Logger = logger
-                };
+            var processor = new MessageProcessor(source, decoder, new List<IMessageHandler>() , logger);
 
             processor.Process();
          
@@ -136,11 +124,6 @@ namespace Worker.Demo.Tests
             uc.RegisterInstance(typeof (IMessageSource), ms);
 
             var processor = uc.Resolve<MessageProcessor>();
-
-            Assert.IsNotNull(processor.Logger);
-            Assert.IsNotNull(processor.MessageSource);
-            Assert.IsNotNull(processor.MessageHandlers);
-            Assert.IsNotNull(processor.MessageDecoder);
 
             processor.Process();
 

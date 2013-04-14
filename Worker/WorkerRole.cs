@@ -28,6 +28,7 @@ namespace Worker
             uc.RegisterType<IEnumerable<IMessageHandler>, IMessageHandler[]>();
 
             var processor = uc.Resolve<MessageProcessor>();
+
             while (true)
             {
                 processor.Process();
