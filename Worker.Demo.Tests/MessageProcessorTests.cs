@@ -2,6 +2,10 @@
 using System.Linq;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Worker.Demo.Decoders;
+using Worker.Demo.Handlers;
+using Worker.Demo.Logging;
+using Worker.Demo.Sources;
 
 namespace Worker.Demo.Tests
 {

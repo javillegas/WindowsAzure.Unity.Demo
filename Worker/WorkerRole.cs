@@ -5,6 +5,10 @@ using System.Threading;
 using Microsoft.Practices.Unity;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Worker.Demo;
+using Worker.Demo.Decoders;
+using Worker.Demo.Handlers;
+using Worker.Demo.Logging;
+using Worker.Demo.Sources;
 
 namespace Worker
 {

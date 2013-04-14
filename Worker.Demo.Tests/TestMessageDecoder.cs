@@ -1,4 +1,5 @@
 ﻿using Demo.Types;
+using Worker.Demo.Decoders;
 
 namespace Worker.Demo.Tests
 {

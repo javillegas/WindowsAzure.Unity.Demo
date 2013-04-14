@@ -1,5 +1,6 @@
 ﻿using System;
 using Demo.Types;
+using Worker.Demo.Handlers;
 
 namespace Worker.Demo.Tests
 {

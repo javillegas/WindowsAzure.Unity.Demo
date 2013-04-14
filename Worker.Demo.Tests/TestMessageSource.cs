@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Worker.Demo.Sources;
 
 namespace Worker.Demo.Tests
 {

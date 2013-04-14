@@ -1,4 +1,5 @@
 ﻿using System;
+using Worker.Demo.Logging;
 
 namespace Worker.Demo.Tests
 {

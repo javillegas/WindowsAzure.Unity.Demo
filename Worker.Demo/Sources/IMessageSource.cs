@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Worker.Demo
+namespace Worker.Demo.Sources
 {
     public interface IMessageSource
     {

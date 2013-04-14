@@ -1,4 +1,4 @@
-﻿namespace Worker.Demo
+﻿namespace Worker.Demo.Logging
 {
     public interface ILogger
     {

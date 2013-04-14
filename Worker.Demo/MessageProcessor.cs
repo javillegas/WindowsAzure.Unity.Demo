@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Demo.Types;
 using Microsoft.Practices.Unity;
+using Worker.Demo.Decoders;
+using Worker.Demo.Handlers;
+using Worker.Demo.Logging;
+using Worker.Demo.Sources;
 
 namespace Worker.Demo
 {

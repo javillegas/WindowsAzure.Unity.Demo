@@ -1,6 +1,6 @@
 using Brisebois.WindowsAzure.TableStorage;
 
-namespace Worker.Demo
+namespace Worker.Demo.Logging
 {
     public class TableStorageLogger : ILogger
     {

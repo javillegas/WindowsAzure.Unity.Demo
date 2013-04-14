@@ -102,16 +102,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandler.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="IMessageDecoder.cs" />
-    <Compile Include="IMessageHandler.cs" />
-    <Compile Include="IMessageSource.cs" />
+    <Compile Include="Handlers\CommandHandler.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Decoders\IMessageDecoder.cs" />
+    <Compile Include="Handlers\IMessageHandler.cs" />
+    <Compile Include="Sources\IMessageSource.cs" />
     <Compile Include="MessageProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueMessageDecoder.cs" />
-    <Compile Include="QueueMessageSource.cs" />
-    <Compile Include="TableStorageLogger.cs" />
+    <Compile Include="Decoders\QueueMessageDecoder.cs" />
+    <Compile Include="Sources\QueueMessageSource.cs" />
+    <Compile Include="Logging\TableStorageLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

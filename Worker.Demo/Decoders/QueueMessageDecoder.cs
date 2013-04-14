@@ -1,7 +1,7 @@
 ﻿using Demo.Types;
 using Newtonsoft.Json;
 
-namespace Worker.Demo
+namespace Worker.Demo.Decoders
 {
     public class QueueMessageDecoder : IMessageDecoder
     {

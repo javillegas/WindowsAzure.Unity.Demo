@@ -9,7 +9,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.RetryPolicies;
 
-namespace Worker.Demo
+namespace Worker.Demo.Sources
 {
     public class QueueMessageSource : IMessageSource
     {
