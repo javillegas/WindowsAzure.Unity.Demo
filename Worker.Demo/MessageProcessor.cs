@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Demo.Types;
 using Worker.Demo.Decoders;
@@ -12,7 +11,7 @@ namespace Worker.Demo
     public class MessageProcessor
     {
         public MessageProcessor(IMessageSource source,
-                                IMessageDecoder decoders, 
+                                IMessageDecoder decoders,
                                 IEnumerable<IMessageHandler> handlers,
                                 ILogger logger)
         {
@@ -27,7 +26,7 @@ namespace Worker.Demo
         public IMessageDecoder MessageDecoder { get; private set; }
 
         public IEnumerable<IMessageHandler> MessageHandlers { get; private set; }
-        
+
         public ILogger Logger { get; private set; }
 
         public void Process()
@@ -40,7 +39,7 @@ namespace Worker.Demo
         private void ProcessMessage(string message)
         {
             var msg = MessageDecoder.Decode(message);
-            
+
             var handlers = GetMessageHandlers(msg);
 
             if (!handlers.Any())
@@ -71,7 +70,7 @@ namespace Worker.Demo
             {
                 h.Handle(msg);
             }
-            catch (Exception ex)
+            catch (MessageHandlerException ex)
             {
                 Logger.Write(ex.ToString());
             }

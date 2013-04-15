@@ -1,4 +1,5 @@
-﻿using Demo.Types;
+﻿using System;
+using Demo.Types;
 using Worker.Demo.Decoders;
 
 namespace Worker.Demo.Tests
@@ -7,6 +8,9 @@ namespace Worker.Demo.Tests
     {
         public IMessage Decode(string message)
         {
+            if(string.IsNullOrWhiteSpace(message))
+                throw new ArgumentNullException("message");
+
             var values = message.Split(':');
             return new TestMessage
                 {       

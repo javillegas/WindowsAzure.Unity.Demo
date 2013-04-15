@@ -16,12 +16,13 @@ namespace Worker.Demo.Tests
         public void TestWhenDecodingMessageThenShouldReturnATestMessage()
         {
             var decoder = new TestMessageDecoder();
-            var message = decoder.Decode("message content:0");
+            const string testMessage = "message content:0";
+            var message = decoder.Decode(testMessage);
             Assert.IsInstanceOfType(message, typeof(TestMessage));
         }
 
         [TestMethod]
-        public void TestWhenGetOneMessageFromSourceThenSourceReturnsMessage()
+        public void TestWhenGetOneMessageFromMessageSourceThenReceivedOneMessage()
         {
             var source = new TestMessageSource();
             source.Load(1);
@@ -44,7 +45,7 @@ namespace Worker.Demo.Tests
         }
 
         [TestMethod]
-        public void TestWhenTestMessgeSouceHasMessageThenDecodeMessage()
+        public void TestWhenTestMessageSourceReturnsMessageThenDecodeMessage()
         {
             var source = new TestMessageSource();
             source.Load(1);
@@ -58,7 +59,7 @@ namespace Worker.Demo.Tests
         }
 
         [TestMethod]
-        public void TestWhenTestMessageIsHandledThenIsProcessed()
+        public void TestWhenTestMessageCanBeHandledThenIsProcessed()
         {
             var source = new TestMessageSource();
             source.Load(1);
@@ -77,7 +78,7 @@ namespace Worker.Demo.Tests
         }
 
         [TestMethod]
-        public void TestWhenTestSourceHasMessagesThenMessageIsRemovedFromSource()
+        public void TestWhenTestSourceHasMessagesAndHandlerIsPresentThenMessageIsRemovedFromSource()
         {
             var source = new TestMessageSource();
             source.Load(1);
@@ -85,7 +86,8 @@ namespace Worker.Demo.Tests
             var handler = new TestMessageHandler();
             var logger = new TestLogger();
 
-            var processor = new MessageProcessor(source,decoder, new List<IMessageHandler> {handler},logger);
+            var handlers = new List<IMessageHandler> { handler };
+            var processor = new MessageProcessor(source, decoder, handlers, logger);
 
             processor.Process();
 
@@ -100,34 +102,36 @@ namespace Worker.Demo.Tests
             var decoder = new TestMessageDecoder();
             var logger = new TestLogger();
 
-            var messageProcessor = new MessageProcessor(source, decoder, new List<IMessageHandler>() , logger);
+            var handlers = new List<IMessageHandler>();
+            var messageProcessor = new MessageProcessor(source, decoder, handlers, logger);
 
             messageProcessor.Process();
-         
+
             Assert.IsTrue(source.GetMessages(1).Any());
         }
 
         [TestMethod]
-        public void TestUsingUnityWhenTestSourceHasMessageAndMessageProcessorIsExecutedThenMessagesAreRemovedFromSource()
+        public void TestWhenUsingUnityTestSourceHasMessageAndMessageProcessorIsExecutedThenMessagesAreRemovedFromSource()
         {
-            var uc = new UnityContainer();
+            using (var uc = new UnityContainer())
+            {
+                uc.RegisterType<ILogger, TestLogger>();
+                uc.RegisterType<IMessageSource, TestMessageSource>();
+                uc.RegisterType<IMessageDecoder, TestMessageDecoder>();
+                uc.RegisterType<IMessageHandler, TestMessageHandler>("test");
+                uc.RegisterType<IEnumerable<IMessageHandler>, IMessageHandler[]>();
 
-            uc.RegisterType<ILogger, TestLogger>();
-            uc.RegisterType<IMessageSource, TestMessageSource>();
-            uc.RegisterType<IMessageDecoder, TestMessageDecoder>();
-            uc.RegisterType<IMessageHandler, TestMessageHandler>("test");
-            uc.RegisterType<IEnumerable<IMessageHandler>, IMessageHandler[]>();
-            
-            var ms = new TestMessageSource();
-            ms.Load(1);
+                var ms = new TestMessageSource();
+                ms.Load(1);
 
-            uc.RegisterInstance(typeof (IMessageSource), ms);
+                uc.RegisterInstance(typeof(IMessageSource), ms);
 
-            var messageProcessor = uc.Resolve<MessageProcessor>();
+                var messageProcessor = uc.Resolve<MessageProcessor>();
 
-            messageProcessor.Process();
+                messageProcessor.Process();
 
-            Assert.IsFalse(ms.GetMessages(1).Any());
+                Assert.IsFalse(ms.GetMessages(1).Any());
+            }
         }
     }
 }

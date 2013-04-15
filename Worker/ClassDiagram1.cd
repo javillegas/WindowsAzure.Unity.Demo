@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Worker.Demo.MessageProcessor">
+    <Position X="1.25" Y="1.5" Width="1.75" />
+    <AssociationLine Name="Logger" Type="Worker.Demo.Logging.ILogger" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.125" Y="2.796" />
+        <Point X="2.125" Y="5.188" />
+        <Point X="4.5" Y="5.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="MessageSource" Type="Worker.Demo.Sources.IMessageSource" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.062" Y="1.5" />
+        <Point X="2.062" Y="0.932" />
+        <Point X="4.5" Y="0.932" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Logger" />
+      <Property Name="MessageHandlers" />
+      <Property Name="MessageSource" />
+      <Property Name="MessageDecoder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Worker.Demo.Sources.QueueMessageSource">
+    <Position X="0.5" Y="6.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Worker.Demo.Logging.ILogger">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.Collections.Generic.IEnumerable&lt;T&gt;" Collapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Worker.Demo.Sources.IMessageSource">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Worker.Demo.Decoders.IMessageDecoder">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

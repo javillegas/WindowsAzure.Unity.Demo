@@ -11,72 +11,72 @@ using Microsoft.WindowsAzure.Storage.RetryPolicies;
 
 namespace Worker.Demo.Sources
 {
-    public class QueueMessageSource : IMessageSource
-    {
-        private readonly Dictionary<string, CloudQueueMessage> messages = new Dictionary<string, CloudQueueMessage>();
-        private readonly CloudQueue queue;
+	public class QueueMessageSource : IMessageSource
+	{
+		private readonly Dictionary<string, CloudQueueMessage> messages = new Dictionary<string, CloudQueueMessage>();
+		private readonly CloudQueue queue;
 
-        private const string ConnectionString = "StorageConnectionString";
-        private const string QueueName = "test";
+		private const string ConnectionString = "StorageConnectionString";
+		private const string QueueName = "test";
 
-        public QueueMessageSource()
-        {
-            var account = MakeAccount();
+		public QueueMessageSource()
+		{
+			var account = MakeAccount();
 
-            queue = MakeQueue(account);
+			queue = MakeQueue(account);
 
-            queue.CreateIfNotExists();    
-        }
+			queue.CreateIfNotExists();    
+		}
 
-        private static CloudStorageAccount MakeAccount()
-        {
-            var cs = CloudConfigurationManager.GetSetting(ConnectionString);
-            var account = CloudStorageAccount.Parse(cs);
+		private static CloudStorageAccount MakeAccount()
+		{
+			var cs = CloudConfigurationManager.GetSetting(ConnectionString);
+			var account = CloudStorageAccount.Parse(cs);
 
-            ServicePointManager.FindServicePoint(account.QueueEndpoint).UseNagleAlgorithm = false;
-            return account;
-        }
+			ServicePointManager.FindServicePoint(account.QueueEndpoint).UseNagleAlgorithm = false;
+			return account;
+		}
 
-        private CloudQueue MakeQueue(CloudStorageAccount account)
-        {
-            var client = account.CreateCloudQueueClient();
-            client.RetryPolicy = new ExponentialRetry(new TimeSpan(0, 0, 0, 2), 10);
+		private static CloudQueue MakeQueue(CloudStorageAccount account)
+		{
+			var client = account.CreateCloudQueueClient();
+			client.RetryPolicy = new ExponentialRetry(new TimeSpan(0, 0, 0, 2), 10);
 
-            return client.GetQueueReference(QueueName);
-        }
+			return client.GetQueueReference(QueueName);
+		}
 
-        public IEnumerable<string> GetMessages(int numberOfMessages)
-        {
-            var cloudQueueMessages = queue.GetMessages(numberOfMessages).ToList();
-            
-            foreach (var message in cloudQueueMessages)
-                messages.Add(MakeMessageHash(message.AsString), message);
-            
-            return cloudQueueMessages.Select(m=>m.AsString);
-        }
+		public IEnumerable<string> GetMessages(int numberOfMessages)
+		{
+			var cloudQueueMessages = queue.GetMessages(numberOfMessages).ToList();
+			
+			foreach (var message in cloudQueueMessages)
+				messages.Add(MakeMessageHash(message.AsString), message);
+			
+			return cloudQueueMessages.Select(m=>m.AsString);
+		}
 
-        public void RemoveMessage(string message)
-        {
-            var cloudMessage = messages[MakeMessageHash(message)];
-            queue.DeleteMessage(cloudMessage);
-        }
+		public void RemoveMessage(string message)
+		{
+			var cloudMessage = messages[MakeMessageHash(message)];
+			queue.DeleteMessage(cloudMessage);
+		}
 
-        protected string MakeMessageHash(string message)
-        {
-            if (string.IsNullOrWhiteSpace(message))
-                throw new ArgumentNullException("message");
+		protected static string MakeMessageHash(string message)
+		{
+			if (string.IsNullOrWhiteSpace(message))
+				throw new ArgumentNullException("message");
 
-            using (var unmanaged = new SHA1CryptoServiceProvider())
-            {
-                var bytes = Encoding.UTF8.GetBytes(message);
+			using (var unmanaged = new SHA1CryptoServiceProvider())
+			{
+				var bytes = Encoding.UTF8.GetBytes(message);
 
-                var computeHash = unmanaged.ComputeHash(bytes);
+				var computeHash = unmanaged.ComputeHash(bytes);
 
-                if (computeHash.Length == 0)
-                    return string.Empty;
+				if (computeHash.Length == 0)
+					return string.Empty;
 
-                return Convert.ToBase64String(computeHash);
-            }
-        }
-    }
+				return Convert.ToBase64String(computeHash);
+			}
+		}
+	}
 }

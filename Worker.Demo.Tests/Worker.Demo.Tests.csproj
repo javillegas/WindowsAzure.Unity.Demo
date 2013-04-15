@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -112,6 +113,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MessageProcessorTests.cs" />
     <Compile Include="TestMessageHandler.cs" />
     <Compile Include="TestLogger.cs" />

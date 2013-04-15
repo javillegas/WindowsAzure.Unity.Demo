@@ -11,8 +11,8 @@ namespace Worker.Demo.Tests
         public void Load(int count)
         {
             Enumerable.Range(0, count)
-                      .ToList()
-                      .ForEach(index => messages.Add("message content:" + index));
+                        .ToList()
+                        .ForEach(index => messages.Add("message content:" + index));
         }
 
         public IEnumerable<string> GetMessages(int numberOfMessages)
